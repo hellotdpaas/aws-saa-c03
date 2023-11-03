@@ -938,3 +938,208 @@ What should a solutions architect do to meet these requirements?
  
   C
   
+* A company runs a shopping application that uses Amazon DynamoDB to store customer information. In case of data corruption, a solutions architect needs to design a solution that meets a recovery point objective (RPO) of 15 minutes and a recovery time objective (RTO) of 1 hour.
+What should the solutions architect recommend to meet these requirements?
+
+  - A. Configure DynamoDB global tables. For RPO recovery, point the application to a different AWS Region.
+  - B. Configure DynamoDB point-in-time recovery. For RPO recovery, restore to the desired point in time.
+  - C. Export the DynamoDB data to Amazon S3 Glacier on a daily basis. For RPO recovery, import the data from S3 Glacier to DynamoDB.
+  - D. Schedule Amazon Elastic Block Store (Amazon EBS) snapshots for the DynamoDB table every 15 minutes. For RPO recovery, restore the DynamoDB table by using the EBS snapshot.
+
+  B
+
+* A company runs a photo processing application that needs to frequently upload and download pictures from Amazon S3 buckets that are located in the same AWS Region. A solutions architect has noticed an increased cost in data transfer fees and needs to implement a solution to reduce these costs.
+How can the solutions architect meet this requirement?
+
+  - A. Deploy Amazon API Gateway into a public subnet and adjust the route table to route S3 calls through it.
+  - B. Deploy a NAT gateway into a public subnet and attach an endpoint policy that allows access to the S3 buckets.
+  - C. Deploy the application into a public subnet and allow it to route through an internet gateway to access the S3 buckets.
+  - D. Deploy an S3 VPC gateway endpoint into the VPC and attach an endpoint policy that allows access to the S3 buckets.
+
+  D
+
+* A company recently launched Linux-based application instances on Amazon EC2 in a private subnet and launched a Linux-based bastion host on an Amazon EC2 instance in a public subnet of a VPC. A solutions architect needs to connect from the on-premises network, through the company's internet connection, to the bastion host, and to the application servers. The solutions architect must make sure that the security groups of all the EC2 instances will allow that access.
+Which combination of steps should the solutions architect take to meet these requirements? (Choose two.)
+
+  - A. Replace the current security group of the bastion host with one that only allows inbound access from the application instances.
+  - B. Replace the current security group of the bastion host with one that only allows inbound access from the internal IP range for the company.
+  - C. Replace the current security group of the bastion host with one that only allows inbound access from the external IP range for the company.
+  - D. Replace the current security group of the application instances with one that allows inbound SSH access from only the private IP address of the bastion host.
+  - E. Replace the current security group of the application instances with one that allows inbound SSH access from only the public IP address of the bastion host.
+
+  CD
+ 
+
+* A solutions architect is designing a two-tier web application. The application consists of a public-facing web tier hosted on Amazon EC2 in public subnets. The database tier consists of Microsoft SQL Server running on Amazon EC2 in a private subnet. Security is a high priority for the company.
+How should security groups be configured in this situation? (Choose two.)
+
+  - A. Configure the security group for the web tier to allow inbound traffic on port 443 from 0.0.0.0/0.
+  - B. Configure the security group for the web tier to allow outbound traffic on port 443 from 0.0.0.0/0.
+  - C. Configure the security group for the database tier to allow inbound traffic on port 1433 from the security group for the web tier.
+  - D. Configure the security group for the database tier to allow outbound traffic on ports 443 and 1433 to the security group for the web tier.
+  - E. Configure the security group for the database tier to allow inbound traffic on ports 443 and 1433 from the security group for the web tier.
+
+  AC
+
+* A company wants to move a multi-tiered application from on premises to the AWS Cloud to improve the application's performance. The application consists of application tiers that communicate with each other by way of RESTful services. Transactions are dropped when one tier becomes overloaded. A solutions architect must design a solution that resolves these issues and modernizes the application.
+Which solution meets these requirements and is the MOST operationally efficient?
+
+  - A. Use Amazon API Gateway and direct transactions to the AWS Lambda functions as the application layer. Use Amazon Simple Queue Service (Amazon SQS) as the communication layer between application services.
+  - B. Use Amazon CloudWatch metrics to analyze the application performance history to determine the servers' peak utilization during the performance failures. Increase the size of the application server's Amazon EC2 instances to meet the peak requirements.
+  - C. Use Amazon Simple Notification Service (Amazon SNS) to handle the messaging between application servers running on Amazon EC2 in an Auto Scaling group. Use Amazon CloudWatch to monitor the SNS queue length and scale up and down as required.
+  - D. Use Amazon Simple Queue Service (Amazon SQS) to handle the messaging between application servers running on Amazon EC2 in an Auto Scaling group. Use Amazon CloudWatch to monitor the SQS queue length and scale up when communication failures are detected.
+
+  A
+
+* A company receives 10 TB of instrumentation data each day from several machines located at a single factory. The data consists of JSON files stored on a storage area network (SAN) in an on-premises data center located within the factory. The company wants to send this data to Amazon S3 where it can be accessed by several additional systems that provide critical near-real-time analytics. A secure transfer is important because the data is considered sensitive.
+Which solution offers the MOST reliable data transfer?
+
+  - A. AWS DataSync over public internet
+  - B. AWS DataSync over AWS Direct Connect
+  - C. AWS Database Migration Service (AWS DMS) over public internet
+  - D. AWS Database Migration Service (AWS DMS) over AWS Direct Connect
+ 
+  B
+
+* A company needs to configure a real-time data ingestion architecture for its application. The company needs an API, a process that transforms data as the data is streamed, and a storage solution for the data.
+Which solution will meet these requirements with the LEAST operational overhead?
+
+  - A. Deploy an Amazon EC2 instance to host an API that sends data to an Amazon Kinesis data stream. Create an Amazon Kinesis Data Firehose delivery stream that uses the Kinesis data stream as a data source. Use AWS Lambda functions to transform the data. Use the Kinesis Data Firehose delivery stream to send the data to Amazon S3.
+  - B. Deploy an Amazon EC2 instance to host an API that sends data to AWS Glue. Stop source/destination checking on the EC2 instance. Use AWS Glue to transform the data and to send the data to Amazon S3.
+  - C. Configure an Amazon API Gateway API to send data to an Amazon Kinesis data stream. Create an Amazon Kinesis Data Firehose delivery stream that uses the Kinesis data stream as a data source. Use AWS Lambda functions to transform the data. Use the Kinesis Data Firehose delivery stream to send the data to Amazon S3.
+  - D. Configure an Amazon API Gateway API to send data to AWS Glue. Use AWS Lambda functions to transform the data. Use AWS Glue to send the data to Amazon S3.
+ 
+  C
+
+* A company needs to keep user transaction data in an Amazon DynamoDB table. The company must retain the data for 7 years.
+What is the MOST operationally efficient solution that meets these requirements?
+
+  - A. Use DynamoDB point-in-time recovery to back up the table continuously.
+  - B. Use AWS Backup to create backup schedules and retention policies for the table.
+  - C. Create an on-demand backup of the table by using the DynamoDB console. Store the backup in an Amazon S3 bucket. Set an S3 Lifecycle configuration for the S3 bucket.
+  - D. Create an Amazon EventBridge (Amazon CloudWatch Events) rule to invoke an AWS Lambda function. Configure the Lambda function to back up the table and to store the backup in an Amazon S3 bucket. Set an S3 Lifecycle configuration for the S3 bucket.
+
+  B. https://aws.amazon.com/blogs/database/set-up-scheduled-backups-for-amazon-dynamodb-using-aws-backup/
+
+* A company is planning to use an Amazon DynamoDB table for data storage. The company is concerned about cost optimization. The table will not be used on most mornings. In the evenings, the read and write traffic will often be unpredictable. When traffic spikes occur, they will happen very quickly.
+What should a solutions architect recommend?
+
+  - A. Create a DynamoDB table in on-demand capacity mode.
+  - B. Create a DynamoDB table with a global secondary index.
+  - C. Create a DynamoDB table with provisioned capacity and auto scaling.
+  - D. Create a DynamoDB table in provisioned capacity mode, and configure it as a global table.
+ 
+  A
+
+* A company recently signed a contract with an AWS Managed Service Provider (MSP) Partner for help with an application migration initiative. A solutions architect needs ta share an Amazon Machine Image (AMI) from an existing AWS account with the MSP Partner's AWS account. The AMI is backed by Amazon Elastic Block Store (Amazon EBS) and uses an AWS Key Management Service (AWS KMS) customer managed key to encrypt EBS volume snapshots.
+What is the MOST secure way for the solutions architect to share the AMI with the MSP Partner's AWS account?
+
+  - A. Make the encrypted AMI and snapshots publicly available. Modify the key policy to allow the MSP Partner's AWS account to use the key.
+  - B. Modify the launchPermission property of the AMI. Share the AMI with the MSP Partner's AWS account only. Modify the key policy to allow the MSP Partner's AWS account to use the key.
+  - C. Modify the launchPermission property of the AMI. Share the AMI with the MSP Partner's AWS account only. Modify the key policy to trust a new KMS key that is owned by the MSP Partner for encryption.
+  - D. Export the AMI from the source account to an Amazon S3 bucket in the MSP Partner's AWS account, Encrypt the S3 bucket with a new KMS key that is owned by the MSP Partner. Copy and launch the AMI in the MSP Partner's AWS account.
+
+  B - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharingamis-explicit.html
+
+* A solutions architect is designing the cloud architecture for a new application being deployed on AWS. The process should run in parallel while adding and removing application nodes as needed based on the number of jobs to be processed. The processor application is stateless. The solutions architect must ensure that the application is loosely coupled and the job items are durably stored.
+Which design should the solutions architect use?
+
+  - A. Create an Amazon SNS topic to send the jobs that need to be processed. Create an Amazon Machine Image (AMI) that consists of the processor application. Create a launch configuration that uses the AMI. Create an Auto Scaling group using the launch configuration. Set the scaling policy for the Auto Scaling group to add and remove nodes based on CPU usage.
+  - B. Create an Amazon SQS queue to hold the jobs that need to be processed. Create an Amazon Machine Image (AMI) that consists of the processor application. Create a launch configuration that uses the AMI. Create an Auto Scaling group using the launch configuration. Set the scaling policy for the Auto Scaling group to add and remove nodes based on network usage.
+  - C. Create an Amazon SQS queue to hold the jobs that need to be processed. Create an Amazon Machine Image (AMI) that consists of the processor application. Create a launch template that uses the AMI. Create an Auto Scaling group using the launch template. Set the scaling policy for the Auto Scaling group to add and remove nodes based on the number of items in the SQS queue.
+  - D. Create an Amazon SNS topic to send the jobs that need to be processed. Create an Amazon Machine Image (AMI) that consists of the processor application. Create a launch template that uses the AMI. Create an Auto Scaling group using the launch template. Set the scaling policy for the Auto Scaling group to add and remove nodes based on the number of messages published to the SNS topic.
+
+  C
+
+* A company hosts its web applications in the AWS Cloud. The company configures Elastic Load Balancers to use certificates that are imported into AWS Certificate Manager (ACM). The company's security team must be notified 30 days before the expiration of each certificate.
+What should a solutions architect recommend to meet this requirement?
+
+  - A. Add a rule in ACM to publish a custom message to an Amazon Simple Notification Service (Amazon SNS) topic every day, beginning 30 days before any certificate will expire.
+  - B. Create an AWS Config rule that checks for certificates that will expire within 30 days. Configure Amazon EventBridge (Amazon CloudWatch Events) to invoke a custom alert by way of Amazon Simple Notification Service (Amazon SNS) when AWS Config reports a noncompliant resource.
+  - C. Use AWS Trusted Advisor to check for certificates that will expire within 30 days. Create an Amazon CloudWatch alarm that is based on Trusted Advisor metrics for check status changes. Configure the alarm to send a custom alert by way of Amazon Simple Notification Service (Amazon SNS).
+  - D. Create an Amazon EventBridge (Amazon CloudWatch Events) rule to detect any certificates that will expire within 30 days. Configure the rule to invoke an AWS Lambda function. Configure the Lambda function to send a custom alert by way of Amazon Simple Notification Service (Amazon SNS).
+
+  D - option B is also valid but cost more - https://repost.aws/knowledge-center/acm-certificate-expiration
+
+* A company's dynamic website is hosted using on-premises servers in the United States. The company is launching its product in Europe, and it wants to optimize site loading times for new European users. The site's backend must remain in the United States. The product is being launched in a few days, and an immediate solution is needed.
+What should the solutions architect recommend?
+
+  - A. Launch an Amazon EC2 instance in us-east-1 and migrate the site to it.
+  - B. Move the website to Amazon S3. Use Cross-Region Replication between Regions.
+  - C. Use Amazon CloudFront with a custom origin pointing to the on-premises servers.
+  - D. Use an Amazon Route 53 geoproximity routing policy pointing to on-premises servers.
+ 
+  B
+
+* A company wants to reduce the cost of its existing three-tier web architecture. The web, application, and database servers are running on Amazon EC2 instances for the development, test, and production environments. The EC2 instances average 30% CPU utilization during peak hours and 10% CPU utilization during non-peak hours.
+The production EC2 instances run 24 hours a day. The development and test EC2 instances run for at least 8 hours each day. The company plans to implement automation to stop the development and test EC2 instances when they are not in use.
+Which EC2 instance purchasing solution will meet the company's requirements MOST cost-effectively?
+
+  - A. Use Spot Instances for the production EC2 instances. Use Reserved Instances for the development and test EC2 instances.
+  - B. Use Reserved Instances for the production EC2 instances. Use On-Demand Instances for the development and test EC2 instances.
+  - C. Use Spot blocks for the production EC2 instances. Use Reserved Instances for the development and test EC2 instances.
+  - D. Use On-Demand Instances for the production EC2 instances. Use Spot blocks for the development and test EC2 instances.
+ 
+  B
+
+* A company has a production web application in which users upload documents through a web interface or a mobile app. According to a new regulatory requirement. new documents cannot be modified or deleted after they are stored.
+What should a solutions architect do to meet this requirement?
+
+  - A. Store the uploaded documents in an Amazon S3 bucket with S3 Versioning and S3 Object Lock enabled.
+  - B. Store the uploaded documents in an Amazon S3 bucket. Configure an S3 Lifecycle policy to archive the documents periodically.
+  - C. Store the uploaded documents in an Amazon S3 bucket with S3 Versioning enabled. Configure an ACL to restrict all access to read-only.
+  - D. Store the uploaded documents on an Amazon Elastic File System (Amazon EFS) volume. Access the data by mounting the volume in read-only mode.
+
+  A
+
+* A company has several web servers that need to frequently access a common Amazon RDS MySQL Multi-AZ DB instance. The company wants a secure method for the web servers to connect to the database while meeting a security requirement to rotate user credentials frequently.
+Which solution meets these requirements?
+
+  - A. Store the database user credentials in AWS Secrets Manager. Grant the necessary IAM permissions to allow the web servers to access AWS Secrets Manager.
+  - B. Store the database user credentials in AWS Systems Manager OpsCenter. Grant the necessary IAM permissions to allow the web servers to access OpsCenter.
+  - C. Store the database user credentials in a secure Amazon S3 bucket. Grant the necessary IAM permissions to allow the web servers to retrieve credentials and access the database.
+  - D. Store the database user credentials in files encrypted with AWS Key Management Service (AWS KMS) on the web server file system. The web server should be able to decrypt the files and access the database.
+ 
+  A
+
+* A company hosts an application on AWS Lambda functions that are invoked by an Amazon API Gateway API. The Lambda functions save customer data to an Amazon Aurora MySQL database. Whenever the company upgrades the database, the Lambda functions fail to establish database connections until the upgrade is complete. The result is that customer data is not recorded for some of the event.
+A solutions architect needs to design a solution that stores customer data that is created during database upgrades.
+Which solution will meet these requirements?
+
+  - A. Provision an Amazon RDS proxy to sit between the Lambda functions and the database. Configure the Lambda functions to connect to the RDS proxy.
+  - B. Increase the run time of the Lambda functions to the maximum. Create a retry mechanism in the code that stores the customer data in the database.
+  - C. Persist the customer data to Lambda local storage. Configure new Lambda functions to scan the local storage to save the customer data to the database.
+  - D. Store the customer data in an Amazon Simple Queue Service (Amazon SQS) FIFO queue. Create a new Lambda function that polls the queue and stores the customer data in the database.
+
+  D, option A is good if RDS is on multi-az mode, and proxy reduce the connection overhead
+
+* A survey company has gathered data for several years from areas in the United States. The company hosts the data in an Amazon S3 bucket that is 3 TB in size and growing. The company has started to share the data with a European marketing firm that has S3 buckets. The company wants to ensure that its data transfer costs remain as low as possible.
+Which solution will meet these requirements?
+
+  - A. Configure the Requester Pays feature on the company's S3 bucket.
+  - B. Configure S3 Cross-Region Replication from the company's S3 bucket to one of the marketing firm's S3 buckets.
+  - C. Configure cross-account access for the marketing firm so that the marketing firm has access to the company's S3 bucket.
+  - D. Configure the company's S3 bucket to use S3 Intelligent-Tiering. Sync the S3 bucket to one of the marketing firm's S3 buckets.
+
+  A
+
+* A company uses Amazon S3 to store its confidential audit documents. The S3 bucket uses bucket policies to restrict access to audit team IAM user credentials according to the principle of least privilege. Company managers are worried about accidental deletion of documents in the S3 bucket and want a more secure solution.
+What should a solutions architect do to secure the audit documents?
+
+  - A. Enable the versioning and MFA Delete features on the S3 bucket.
+  - B. Enable multi-factor authentication (MFA) on the IAM user credentials for each audit team IAM user account.
+  - C. Add an S3 Lifecycle policy to the audit team's IAM user accounts to deny the s3:DeleteObject action during audit dates.
+  - D. Use AWS Key Management Service (AWS KMS) to encrypt the S3 bucket and restrict audit team IAM user accounts from accessing the KMS key.
+
+  A
+
+* A company is using a SQL database to store movie data that is publicly accessible. The database runs on an Amazon RDS Single-AZ DB instance. A script runs queries at random intervals each day to record the number of new movies that have been added to the database. The script must report a final total during business hours.
+The company's development team notices that the database performance is inadequate for development tasks when the script is running. A solutions architect must recommend a solution to resolve this issue.
+Which solution will meet this requirement with the LEAST operational overhead?
+
+  - A. Modify the DB instance to be a Multi-AZ deployment.
+  - B. Create a read replica of the database. Configure the script to query only the read replica.
+  - C. Instruct the development team to manually export the entries in the database at the end of each day.
+  - D. Use Amazon ElastiCache to cache the common queries that the script runs against the database.
+ 
+  B

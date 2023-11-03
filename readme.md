@@ -1259,3 +1259,56 @@ What should the solutions architect do to prevent AWS Glue from reprocessing old
   - D. Use a FindMatches machine learning (ML) transform.
 
   A 
+
+* A solutions architect must design a highly available infrastructure for a website. The website is powered by Windows web servers that run on Amazon EC2 instances. The solutions architect must implement a solution that can mitigate a large-scale DDoS attack that originates from thousands of IP addresses. Downtime is not acceptable for the website.
+Which actions should the solutions architect take to protect the website from such an attack? (Choose two.)
+
+  - A. Use AWS Shield Advanced to stop the DDoS attack.
+  - B. Configure Amazon GuardDuty to automatically block the attackers.
+  - C. Configure the website to use Amazon CloudFront for both static and dynamic content.
+  - D. Use an AWS Lambda function to automatically add attacker IP addresses to VPC network ACLs.
+  - E. Use EC2 Spot Instances in an Auto Scaling group with a target tracking scaling policy that is set to 80% CPU utilization.
+
+  AC
+
+* A company is preparing to deploy a new serverless workload. A solutions architect must use the principle of least privilege to configure permissions that will be used to run an AWS Lambda function. An Amazon EventBridge (Amazon CloudWatch Events) rule will invoke the function.
+Which solution meets these requirements?
+
+  - A. Add an execution role to the function with lambda:InvokeFunction as the action and * as the principal.
+  - B. Add an execution role to the function with lambda:InvokeFunction as the action and Service: lambda.amazonaws.com as the principal.
+  - C. Add a resource-based policy to the function with lambda:* as the action and Service: events.amazonaws.com as the principal.
+  - D. Add a resource-based policy to the function with lambda:InvokeFunction as the action and Service: events.amazonaws.com as the principal.
+ 
+  D
+
+* A company is preparing to store confidential data in Amazon S3. For compliance reasons, the data must be encrypted at rest. Encryption key usage must be logged for auditing purposes. Keys must be rotated every year.
+Which solution meets these requirements and is the MOST operationally efficient?
+
+  - A. Server-side encryption with customer-provided keys (SSE-C)
+  - B. Server-side encryption with Amazon S3 managed keys (SSE-S3)
+  - C. Server-side encryption with AWS KMS keys (SSE-KMS) with manual rotation
+  - D. Server-side encryption with AWS KMS keys (SSE-KMS) with automatic rotation
+ 
+  D
+
+* A company needs to store data in Amazon S3 and must prevent the data from being changed. The company wants new objects that are uploaded to Amazon S3 to remain unchangeable for a nonspecific amount of time until the company decides to modify the objects. Only specific users in the company's AWS account can have the ability 10 delete the objects.
+What should a solutions architect do to meet these requirements?
+
+  - A. Create an S3 Glacier vault. Apply a write-once, read-many (WORM) vault lock policy to the objects.
+  - B. Create an S3 bucket with S3 Object Lock enabled. Enable versioning. Set a retention period of 100 years. Use governance mode as the S3 bucket’s default retention mode for new objects.
+  - C. Create an S3 bucket. Use AWS CloudTrail to track any S3 API events that modify the objects. Upon notification, restore the modified objects from any backup versions that the company has.
+  - D. Create an S3 bucket with S3 Object Lock enabled. Enable versioning. Add a legal hold to the objects. Add the s3:PutObjectLegalHold permission to the IAM policies of users who need to delete the objects.
+
+  D - The Object Lock legal hold operation enables you to place a legal hold on an object version. Like setting a retention period, a legal hold prevents an object version from being overwritten or deleted. However, a legal hold doesn't have an associated retention period and remains in effect until removed.
+
+* A social media company allows users to upload images to its website. The website runs on Amazon EC2 instances. During upload requests, the website resizes the images to a standard size and stores the resized images in Amazon S3. Users are experiencing slow upload requests to the website.
+The company needs to reduce coupling within the application and improve website performance. A solutions architect must design the most operationally efficient process for image uploads.
+Which combination of actions should the solutions architect take to meet these requirements? (Choose two.)
+
+  - A. Configure the application to upload images to S3 Glacier.
+  - B. Configure the web server to upload the original images to Amazon S3.
+  - C. Configure the application to upload images directly from each user's browser to Amazon S3 through the use of a presigned URL
+  - D. Configure S3 Event Notifications to invoke an AWS Lambda function when an image is uploaded. Use the function to resize the image.
+  - E. Create an Amazon EventBridge (Amazon CloudWatch Events) rule that invokes an AWS Lambda function on a schedule to resize uploaded images.
+ 
+  CD

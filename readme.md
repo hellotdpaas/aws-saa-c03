@@ -1143,3 +1143,119 @@ Which solution will meet this requirement with the LEAST operational overhead?
   - D. Use Amazon ElastiCache to cache the common queries that the script runs against the database.
  
   B
+
+* A company is storing sensitive user information in an Amazon S3 bucket. The company wants to provide secure access to this bucket from the application tier running on Amazon EC2 instances inside a VPC.
+Which combination of steps should a solutions architect take to accomplish this? (Choose two.)
+
+  - A. Configure a VPC gateway endpoint for Amazon S3 within the VPC.
+  - B. Create a bucket policy to make the objects in the S3 bucket public.
+  - C. Create a bucket policy that limits access to only the application tier running in the VPC.
+  - D. Create an IAM user with an S3 access policy and copy the IAM credentials to the EC2 instance.
+  - E. Create a NAT instance and have the EC2 instances use the NAT instance to access the S3 bucket.
+ 
+  AC
+
+* A company runs an on-premises application that is powered by a MySQL database. The company is migrating the application to AWS to increase the application's elasticity and availability.
+The current architecture shows heavy read activity on the database during times of normal operation. Every 4 hours, the company's development team pulls a full export of the production database to populate a database in the staging environment. During this period, users experience unacceptable application latency. The development team is unable to use the staging environment until the procedure completes.
+A solutions architect must recommend replacement architecture that alleviates the application latency issue. The replacement architecture also must give the development team the ability to continue using the staging environment without delay.
+Which solution meets these requirements?
+
+  - A. Use Amazon Aurora MySQL with Multi-AZ Aurora Replicas for production. Populate the staging database by implementing a backup and restore process that uses the mysqldump utility.
+  - B. Use Amazon Aurora MySQL with Multi-AZ Aurora Replicas for production. Use database cloning to create the staging database on-demand.
+  - C. Use Amazon RDS for MySQL with a Multi-AZ deployment and read replicas for production. Use the standby instance for the staging database.
+  - D. Use Amazon RDS for MySQL with a Multi-AZ deployment and read replicas for production. Populate the staging database by implementing a backup and restore process that uses the mysqldump utility.
+
+  B. https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clone.html
+
+* A company is designing an application where users upload small files into Amazon S3. After a user uploads a file, the file requires one-time simple processing to transform the data and save the data in JSON format for later analysis.
+Each file must be processed as quickly as possible after it is uploaded. Demand will vary. On some days, users will upload a high number of files. On other days, users will upload a few files or no files.
+Which solution meets these requirements with the LEAST operational overhead?
+
+  - A. Configure Amazon EMR to read text files from Amazon S3. Run processing scripts to transform the data. Store the resulting JSON file in an Amazon Aurora DB cluster.
+  - B. Configure Amazon S3 to send an event notification to an Amazon Simple Queue Service (Amazon SQS) queue. Use Amazon EC2 instances to read from the queue and process the data. Store the resulting JSON file in Amazon DynamoDB.
+  - C. Configure Amazon S3 to send an event notification to an Amazon Simple Queue Service (Amazon SQS) queue. Use an AWS Lambda function to read from the queue and process the data. Store the resulting JSON file in Amazon DynamoDB.
+  - D. Configure Amazon EventBridge (Amazon CloudWatch Events) to send an event to Amazon Kinesis Data Streams when a new file is uploaded. Use an AWS Lambda function to consume the event from the stream and process the data. Store the resulting JSON file in an Amazon Aurora DB cluster.
+ 
+  C
+
+* An application allows users at a company's headquarters to access product data. The product data is stored in an Amazon RDS MySQL DB instance. The operations team has isolated an application performance slowdown and wants to separate read traffic from write traffic. A solutions architect needs to optimize the application's performance quickly.
+What should the solutions architect recommend?
+
+  - A. Change the existing database to a Multi-AZ deployment. Serve the read requests from the primary Availability Zone.
+  - B. Change the existing database to a Multi-AZ deployment. Serve the read requests from the secondary Availability Zone.
+  - C. Create read replicas for the database. Configure the read replicas with half of the compute and storage resources as the source database.
+  - D. Create read replicas for the database. Configure the read replicas with the same compute and storage resources as the source database.
+
+  D
+
+* A company has a large Microsoft SharePoint deployment running on-premises that requires Microsoft Windows shared file storage. The company wants to migrate this workload to the AWS Cloud and is considering various storage options. The storage solution must be highly available and integrated with Active Directory for access control.
+Which solution will satisfy these requirements?
+
+  - A. Configure Amazon EFS storage and set the Active Directory domain for authentication.
+  - B. Create an SMB file share on an AWS Storage Gateway file gateway in two Availability Zones.
+  - C. Create an Amazon S3 bucket and configure Microsoft Windows Server to mount it as a volume.
+  - D. Create an Amazon FSx for Windows File Server file system on AWS and set the Active Directory domain for authentication.
+ 
+  D
+
+* An image-processing company has a web application that users use to upload images. The application uploads the images into an Amazon S3 bucket. The company has set up S3 event notifications to publish the object creation events to an Amazon Simple Queue Service (Amazon SQS) standard queue. The SQS queue serves as the event source for an AWS Lambda function that processes the images and sends the results to users through email.
+Users report that they are receiving multiple email messages for every uploaded image. A solutions architect determines that SQS messages are invoking the Lambda function more than once, resulting in multiple email messages.
+What should the solutions architect do to resolve this issue with the LEAST operational overhead?
+
+  - A. Set up long polling in the SQS queue by increasing the ReceiveMessage wait time to 30 seconds.
+  - B. Change the SQS standard queue to an SQS FIFO queue. Use the message deduplication ID to discard duplicate messages.
+  - C. Increase the visibility timeout in the SQS queue to a value that is greater than the total of the function timeout and the batch window timeout.
+  - D. Modify the Lambda function to delete each message from the SQS queue immediately after the message is read before processing
+
+  C
+
+* A company is implementing a shared storage solution for a gaming application that is hosted in an on-premises data center. The company needs the ability to use Lustre clients to access data. The solution must be fully managed.
+Which solution meets these requirements?
+
+  - A. Create an AWS Storage Gateway file gateway. Create a file share that uses the required client protocol. Connect the application server to the file share.
+  - B. Create an Amazon EC2 Windows instance. Install and configure a Windows file share role on the instance. Connect the application server to the file share.
+  - C. Create an Amazon Elastic File System (Amazon EFS) file system, and configure it to support Lustre. Attach the file system to the origin server. Connect the application server to the file system.
+  - D. Create an Amazon FSx for Lustre file system. Attach the file system to the origin server. Connect the application server to the file system.
+
+  D
+
+* A company's containerized application runs on an Amazon EC2 instance. The application needs to download security certificates before it can communicate with other business applications. The company wants a highly secure solution to encrypt and decrypt the certificates in near real time. The solution also needs to store data in highly available storage after the data is encrypted.
+Which solution will meet these requirements with the LEAST operational overhead?
+
+  - A. Create AWS Secrets Manager secrets for encrypted certificates. Manually update the certificates as needed. Control access to the data by using fine-grained IAM access.
+  - B. Create an AWS Lambda function that uses the Python cryptography library to receive and perform encryption operations. Store the function in an Amazon S3 bucket.
+  - C. Create an AWS Key Management Service (AWS KMS) customer managed key. Allow the EC2 role to use the KMS key for encryption operations. Store the encrypted data on Amazon S3.
+  - D. Create an AWS Key Management Service (AWS KMS) customer managed key. Allow the EC2 role to use the KMS key for encryption operations. Store the encrypted data on Amazon Elastic Block Store (Amazon EBS) volumes.
+ 
+  C
+
+* A solutions architect is designing a VPC with public and private subnets. The VPC and subnets use IPv4 CIDR blocks. There is one public subnet and one private subnet in each of three Availability Zones (AZs) for high availability. An internet gateway is used to provide internet access for the public subnets. The private subnets require access to the internet to allow Amazon EC2 instances to download software updates.
+What should the solutions architect do to enable Internet access for the private subnets?
+
+  - A. Create three NAT gateways, one for each public subnet in each AZ. Create a private route table for each AZ that forwards non-VPC traffic to the NAT gateway in its AZ.
+  - B. Create three NAT instances, one for each private subnet in each AZ. Create a private route table for each AZ that forwards non-VPC traffic to the NAT instance in its AZ.
+  - C. Create a second internet gateway on one of the private subnets. Update the route table for the private subnets that forward non-VPC traffic to the private internet gateway.
+  - D. Create an egress-only internet gateway on one of the public subnets. Update the route table for the private subnets that forward non-VPC traffic to the egress-only Internet gateway.
+ 
+  A
+
+* A company wants to migrate an on-premises data center to AWS. The data center hosts an SFTP server that stores its data on an NFS-based file system. The server holds 200 GB of data that needs to be transferred. The server must be hosted on an Amazon EC2 instance that uses an Amazon Elastic File System (Amazon EFS) file system.
+Which combination of steps should a solutions architect take to automate this task? (Choose two.)
+
+  - A. Launch the EC2 instance into the same Availability Zone as the EFS file system.
+  - B. Install an AWS DataSync agent in the on-premises data center.
+  - C. Create a secondary Amazon Elastic Block Store (Amazon EBS) volume on the EC2 instance for the data.
+  - D. Manually use an operating system copy command to push the data to the EC2 instance.
+  - E. Use AWS DataSync to create a suitable location configuration for the on-premises SFTP server.
+ 
+  BE
+
+* A company has an AWS Glue extract, transform, and load (ETL) job that runs every day at the same time. The job processes XML data that is in an Amazon S3 bucket. New data is added to the S3 bucket every day. A solutions architect notices that AWS Glue is processing all the data during each run.
+What should the solutions architect do to prevent AWS Glue from reprocessing old data?
+
+  - A. Edit the job to use job bookmarks.
+  - B. Edit the job to delete data after the data is processed.
+  - C. Edit the job by setting the NumberOfWorkers field to 1.
+  - D. Use a FindMatches machine learning (ML) transform.
+
+  A 

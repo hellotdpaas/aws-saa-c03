@@ -1520,3 +1520,68 @@ What should a solutions architect do to maintain the desired performance across 
 
   B
 
+* A company is developing a file-sharing application that will use an Amazon S3 bucket for storage. The company wants to serve all the files through an Amazon CloudFront distribution. The company does not want the files to be accessible through direct navigation to the S3 URL.
+What should a solutions architect do to meet these requirements?
+
+  - A. Write individual policies for each S3 bucket to grant read permission for only CloudFront access.
+  - B. Create an IAM user. Grant the user read permission to objects in the S3 bucket. Assign the user to CloudFront.
+  - C. Write an S3 bucket policy that assigns the CloudFront distribution ID as the Principal and assigns the target S3 bucket as the Amazon Resource Name (ARN).
+  - D. Create an origin access identity (OAI). Assign the OAI to the CloudFront distribution. Configure the S3 bucket permissions so that only the OAI has read permission.
+ 
+  D
+
+* A company’s website provides users with downloadable historical performance reports. The website needs a solution that will scale to meet the company’s website demands globally. The solution should be cost-effective, limit the provisioning of infrastructure resources, and provide the fastest possible response time.
+Which combination should a solutions architect recommend to meet these requirements?
+
+  - A. Amazon CloudFront and Amazon S3
+  - B. AWS Lambda and Amazon DynamoDB
+  - C. Application Load Balancer with Amazon EC2 Auto Scaling
+  - D. Amazon Route 53 with internal Application Load Balancers
+
+  A
+
+* A company runs an Oracle database on premises. As part of the company’s migration to AWS, the company wants to upgrade the database to the most recent available version. The company also wants to set up disaster recovery (DR) for the database. The company needs to minimize the operational overhead for normal operations and DR setup. The company also needs to maintain access to the database's underlying operating system.
+Which solution will meet these requirements?
+
+  - A. Migrate the Oracle database to an Amazon EC2 instance. Set up database replication to a different AWS Region.
+  - B. Migrate the Oracle database to Amazon RDS for Oracle. Activate Cross-Region automated backups to replicate the snapshots to another AWS Region.
+  - C. Migrate the Oracle database to Amazon RDS Custom for Oracle. Create a read replica for the database in another AWS Region.
+  - D. Migrate the Oracle database to Amazon RDS for Oracle. Create a standby database in another Availability Zone.
+ 
+  C
+
+* A company wants to move its application to a serverless solution. The serverless solution needs to analyze existing and new data by using SL. The company stores the data in an Amazon S3 bucket. The data requires encryption and must be replicated to a different AWS Region.
+Which solution will meet these requirements with the LEAST operational overhead?
+
+  - A. Create a new S3 bucket. Load the data into the new S3 bucket. Use S3 Cross-Region Replication (CRR) to replicate encrypted objects to an S3 bucket in another Region. Use server-side encryption with AWS KMS multi-Region keys (SSE-KMS). Use Amazon Athena to query the data.
+  - B. Create a new S3 bucket. Load the data into the new S3 bucket. Use S3 Cross-Region Replication (CRR) to replicate encrypted objects to an S3 bucket in another Region. Use server-side encryption with AWS KMS multi-Region keys (SSE-KMS). Use Amazon RDS to query the data.
+  - C. Load the data into the existing S3 bucket. Use S3 Cross-Region Replication (CRR) to replicate encrypted objects to an S3 bucket in another Region. Use server-side encryption with Amazon S3 managed encryption keys (SSE-S3). Use Amazon Athena to query the data.
+  - D. Load the data into the existing S3 bucket. Use S3 Cross-Region Replication (CRR) to replicate encrypted objects to an S3 bucket in another Region. Use server-side encryption with Amazon S3 managed encryption keys (SSE-S3). Use Amazon RDS to query the data.
+ 
+  C
+
+* A company is migrating its on-premises PostgreSQL database to Amazon Aurora PostgreSQL. The on-premises database must remain online and accessible during the migration. The Aurora database must remain synchronized with the on-premises database.
+Which combination of actions must a solutions architect take to meet these requirements? (Choose two.)
+
+  - A. Create an ongoing replication task.
+  - B. Create a database backup of the on-premises database.
+  - C. Create an AWS Database Migration Service (AWS DMS) replication server.
+  - D. Convert the database schema by using the AWS Schema Conversion Tool (AWS SCT).
+  - E. Create an Amazon EventBridge (Amazon CloudWatch Events) rule to monitor the database synchronization.
+ 
+  AC - https://docs.aws.amazon.com/zh_cn/dms/latest/sbs/chap-manageddatabases.postgresql-rds-postgresql.html
+
+* A company uses AWS Organizations to create dedicated AWS accounts for each business unit to manage each business unit's account independently upon request. The root email recipient missed a notification that was sent to the root user email address of one account. The company wants to ensure that all future notifications are not missed. Future notifications must be limited to account administrators.
+Which solution will meet these requirements?
+
+  - A. Configure the company’s email server to forward notification email messages that are sent to the AWS account root user email address to all users in the organization.
+  - B. Configure all AWS account root user email addresses as distribution lists that go to a few administrators who can respond to alerts. Configure AWS account alternate contacts in the AWS Organizations console or programmatically.
+  - C. Configure all AWS account root user email messages to be sent to one administrator who is responsible for monitoring alerts and forwarding those alerts to the appropriate groups.
+  - D. Configure all existing AWS accounts and all newly created accounts to use the same root user email address. Configure AWS account alternate contacts in the AWS Organizations console or programmatically.
+
+  B - https://docs.aws.amazon.com/organizations/latest/userguide/orgs_best-practices.html
+
+* 
+
+
+  

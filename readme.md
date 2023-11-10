@@ -188,7 +188,7 @@
   - A. GuardDuty
   - B. Patch Manager, a capacity of AWS Systems Manager
   - C. Amazon Inspector
-  - D. AWS COnfig
+  - D. AWS Config
 
   C. Amazon GuardDuty is a threat detection service that continuously monitors for malicious activity and anomalous behavior. Patch Manager will apply patches for operating systems and applications. AWS Config is a service that gives you the ability to assess, audit, and evaluate the configurations of your AWS resources. Amazon Inspector removes the operational overhead that is necessary to configure a vulnerability management solution. Amazon Inspector works with both EC2 instances and container images in Amazon ECR to identify potential software vulnerabilities and to categorize the severity of the vulnerabilities.
 
@@ -298,7 +298,7 @@
   - C. Recreate the application hosting environment on AWS by using Amazon EC2 instances. Direct 10% of application traffic to the EC2 instances that are running in the AWS Cloud. When the on-premises application fails, direct 100% of application traffic to the EC2 instances that are running in the AWS Cloud.
   - D. Back up the on-premises application, configuration, and data to an Amazon S3 bucket. When the on-premises application fails, rebuild the on-premises hosting environment and restore the application from the information that is stored in the S3 bucket.
 
-  B - A and D are backup and restore, C is warm standby (RPO and RTO are usually a few minutes.), B is pilot light strategy because the core infrastructure requirements are all in place
+  B - A and D are backup and restore, C is warm standby (RPO and RTO are usually a few minutes), B is pilot light strategy because the core infrastructure requirements are all in place
 
 - A company is developing a new mobile version of its popular web application in the AWS Cloud. The mobile app must be accessible to internal and external users. The mobile app must handle authorization, authentication, and user management from one central source.
 
@@ -348,7 +348,7 @@
 
   - A. Deploy a VPC Gateway endpoint into the us-west-2 VPC.
   - B. Deploy a VPC in the ap-southeast-1 region with an S3 Interface endpoint.
-  - C.Configure a route table entry in the us-west-2 VPC to direct S3 traffic to the Gateway endpoint.
+  - C. Configure a route table entry in the us-west-2 VPC to direct S3 traffic to the Gateway endpoint.
   - D. Configure a VPC peering connection between the us-west-2 and ap-southeast-1 VPCs.
   - E. Configure the application to use the ap-southeast-1 region when accessing S3 buckets.
   - F. Configure the application to use the ap-southeast-1 Interface endpoint DNS when accessing S3 buckets.
@@ -364,7 +364,7 @@
   - C. Deploy applications using containers onto EC2 instances provisioned in Auto Scaling groups and refresh instances regularly from updated AMIs
   - D. Deploy applications using containers onto manually provisioned EC2 instances and refresh instances regularly from updated AMIs
 
-  C - option A will work but need to implement in every account and all regions. option B is similar to A and not very scalable. option D needs manully provision new EC2 instances
+  C - option A will work but need to implement in every account and all regions. option B is similar to A and not very scalable. option D needs manually provision new EC2 instances
 
 - Your company stores sensitive data in S3. There is a requirement to ensure the data is encrypted at rest in the most secure method possible.
   Which of the following encryption configurations would meet the requirement?
@@ -374,7 +374,7 @@
   - C. SSE-C
   - D. Client-side encryption
 
-  D - option A use AWS-256 with AWS owning the entire chain of trust (root CA, master key, data key). option B, AWS only own Root CA, the rest is owned by customer. option C means customer own the whole chain of trust. option A, B and C means AWS perfoms encryption in S3.
+  D - option A use AWS-256 with AWS owning the entire chain of trust (root CA, master key, data key). option B, AWS only own Root CA, the rest is owned by customer. option C means customer own the whole chain of trust. option A, B and C means AWS performs encryption in S3.
 
 - An on-premises application stores data containing PII on an EFS file system, reachable through a site-to-site VPN. There is a requirement for each file to have certain fields tokenized as quickly as possible to avoid the raw data being easily accessed. The tokenization must be completed entirely within AWS.
   Which of the following workflows would meet the requirements?
@@ -394,12 +394,18 @@
   - C. Modify the subnet network ACL and block all outbound traffic.
   - D. Modify the subnet network ACL and block all inbound and outbound traffic.
 
-  A - option B will not work as the effective security group rules are the union of all rules. From AWS doc, if there is more than one rule for a specific port, we apply the most permissive rule. For example, if you have a rule that allows access to TCP port 22 (SSH) from IP address 203.0.113.1 and another rule that allows access to TCP port 22 from everyone, everyone has access to TCP port 22. option C andn D will impact othe running instances.
+  A - option B will not work as the effective security group rules are the union of all rules. From AWS doc, if there is more than one rule for a specific port, we apply the most permissive rule. For example, if you have a rule that allows access to TCP port 22 (SSH) from IP address 203.0.113.1 and another rule that allows access to TCP port 22 from everyone, everyone has access to TCP port 22. option C and D will impact other running instances.
 
 - You've been asked to design the monitoring of an internal application which runs on an EC2 instance in a private subnet, listening on port 8080. This monitoring will be used to calculate availability of the application and be used for business continuity purposes as well as automated failover.
-  Which of the following recommendations will meet the requirement ir the most reliable manner? (pick two) - A. Write a script to run via cron every minute which checks the listener port and uploads as a custom CloudWatch metric. - B. Configure the CloudWatch agent to push a metric which tests the listener. - C. Provision a CloudWatch Synthetics canary to test the listener port. - D. Configure a CloudWatch alarm from the appropriate metric. Configure a Route 53 Health Check with the alarm as the source. - E. Configure a Route 53 Health Check with the CloudWatch metric as the source.
+  Which of the following recommendations will meet the requirement is the most reliable manner? (pick two)
 
-      BC - option A use shell script is not very reliable. Option E, route 53 health checks can not use metric as source but can use alarm as source, but internal application can use a better apprach than route 53
+  - A. Write a script to run via cron every minute which checks the listener port and uploads as a custom CloudWatch metric.
+  - B. Configure the CloudWatch agent to push a metric which tests the listener.
+  - C. Provision a CloudWatch Synthetics canary to test the listener port.
+  - D. Configure a CloudWatch alarm from the appropriate metric. Configure a Route 53 Health Check with the alarm as the source. -
+  - E. Configure a Route 53 Health Check with the CloudWatch metric as the source.
+
+  BC - option A use shell script is not very reliable. Option E, route 53 health checks can not use metric as source but can use alarm as source, but internal application can use a better option than route 53
 
 - An application has a requirement for cross-region recovery of a DynamoDB table in case of disaster. The requirements include being able to recover any deleted items within a certain retention window. The table in the source region has DynamoDB Streams enabled.
   What recommendation should be made to meet the requirement?
@@ -409,7 +415,7 @@
   - C. Provision a Lambda function triggered by the DynamoDB stream. Parse the stream entries and propagate all operations to the remote table.
   - D. Provision an EventBridge rule to capture all table events. Forward the events to a Lambda function which parses the events and applies them to the remote table.
 
-  B - option A willl fully recover and reflect deleted items and wont recover deleted items. option C and D is like option A but not meet the requirement for recovering deleted items
+  B - option A will fully recover and reflect deleted items and wont recover deleted items. option C and D is like option A but not meet the requirement for recovering deleted items
 
 - A stateful eCommerce EC2 application has been deployed using Auto Scaling behind an Application Load Balancer. During scaling, customers are complaining about their shopping carts suddenly being empty.
   What steps could be taken to ensure shopping cart data is retained during EC2 scaling events?
@@ -419,7 +425,7 @@
   - C. Enable application-based stickiness in the EC2 Target group to ensure all requests from the same client are routed to the same target.
   - D. Migrate the shopping cart data to a DynamoDB table and reference the table instead of the local application cache.
 
-  D - option A means not scale at all but cost lot more money. option B and C does not account for scaling in activities. only option D convert the app from statefull to stateless
+  D - option A means not scale at all but cost lot more money. option B and C does not account for scaling in activities. only option D convert the app from stateful to stateless
 
 - A web application is being architected for deployment into AWS. There is a requirement to implement throttling of web requests when the back end latency increases beyond a specific threshold, in order to ensure an optimal user experience.
   Which of the below recommendations can meet this requirement?
@@ -430,7 +436,7 @@
   - D. API Gateway usage plans
   - E. None of these
 
-  E - option A for ALB listern rule does not reject requests. option B cloudfront can only do geo blocking. option C the throutling is configured as a static threshold, and not consider the latency of the backend. optioon D is also a static threshold but not rely on a metric
+  E - option A for ALB listener rule does not reject requests. option B cloudfront can only do geo blocking. option C the throttling is configured as a static threshold, and not consider the latency of the backend. option D is also a static threshold but not rely on a metric
 
 - To improve reliability, you've recommended deploying an application using immutable infrastructure.
   Which of the following is NOT a benefit of deploying application infrastructure with immutability?
@@ -486,7 +492,7 @@
   - C. EC2 instance provisioned with an NVMe SSD Instance Store volume
   - D. EFS provisioned with General Purpose performance mode
 
-  A. option A FSx is good with high perfoamcne with low latency, however, the default configuration will place all files below 1 Gb in the same stripe and reduce the overall perfoamcne capacity. option D general purpose performance mode has lower per-option latenct than max I/O
+  A. option A FSx is good with high performance with low latency, however, the default configuration will place all files below 1 Gb in the same stripe and reduce the overall performance capacity. option D general purpose performance mode has lower per-option latency than max I/O
 
 - A new streaming application has performance requirements for low latency and high pps (packets per second). The application is to be deployed into a VPC, using a Network Load Balancer as the front end and EC2 instances in a Cluster Placement Group.
   What recommendation should be made to optimize network performance for the application?
@@ -506,12 +512,13 @@
   - B. Purchase 3 year EC2 reservations.
   - C. Purchase 1 year EC2 savings plans.
   - D. Purchase 1 year Compute savings plans.
-    D - option ABC only limit to EC2, 3 years is too long. Compte savings plans covers EC2, Fargate and Lambda, but discount is less than EC2 savings plans less than EC2 reversations
+
+  D - option ABC only limit to EC2, 3 years is too long. Compte savings plans covers EC2, Fargate and Lambda, but discount is less than EC2 savings plans less than EC2 reservations
 
 - When designing a multi-tier application, all non-production environments must be architected for automatically scaling to zero after hours, on weekends, and on holidays or when otherwise not in use. The application tiers include a web proxy, application runtime, and a database.
   Which of the following recommendations will meet the cost optimization requirement? (Pick three)
 
-  - A.Application Load Balancer
+  - A. Application Load Balancer
   - B. EC2 with nginx using an Auto Scaling group
   - C. Application deployed on EC2 instance using Jenkins
   - D. Application deployed on EC2 using an Auto Scaling group
@@ -902,10 +909,10 @@
 - A company is building an application in the AWS Cloud. The application will store data in Amazon S3 buckets in two AWS Regions. The company must use an AWS Key Management Service (AWS KMS) customer managed key to encrypt all data that is stored in the S3 buckets. The data in both S3 buckets must be encrypted and decrypted with the same KMS key. The data and the key must be stored in each of the two Regions.
   Which solution will meet these requirements with the LEAST operational overhead?
 
-* A. Create an S3 bucket in each Region. Configure the S3 buckets to use server-side encryption with Amazon S3 managed encryption keys (SSE-S3). Configure replication between the S3 buckets.
-* B. Create a customer managed multi-Region KMS key. Create an S3 bucket in each Region. Configure replication between the S3 buckets. Configure the application to use the KMS key with client-side encryption.
-* C. Create a customer managed KMS key and an S3 bucket in each Region. Configure the S3 buckets to use server-side encryption with Amazon S3 managed encryption keys (SSE-S3). Configure replication between the S3 buckets.
-* D. Create a customer managed KMS key and an S3 bucket in each Region. Configure the S3 buckets to use server-side encryption with AWS KMS keys (SSE-KMS). Configure replication between the S3 buckets.
+  - A. Create an S3 bucket in each Region. Configure the S3 buckets to use server-side encryption with Amazon S3 managed encryption keys (SSE-S3). Configure replication between the S3 buckets.
+  - B. Create a customer managed multi-Region KMS key. Create an S3 bucket in each Region. Configure replication between the S3 buckets. Configure the application to use the KMS key with client-side encryption.
+  - C. Create a customer managed KMS key and an S3 bucket in each Region. Configure the S3 buckets to use server-side encryption with Amazon S3 managed encryption keys (SSE-S3). Configure replication between the S3 buckets.
+  - D. Create a customer managed KMS key and an S3 bucket in each Region. Configure the S3 buckets to use server-side encryption with AWS KMS keys (SSE-KMS). Configure replication between the S3 buckets.
 
   B
 
@@ -1044,7 +1051,7 @@
   - C. Schedule an AWS Systems Manager maintenance window to apply the patch to all EC2 instances.
   - D. Use AWS Systems Manager Run Command to run a custom command that applies the patch to all EC2 instances.
 
-  D. option B is a good solution, but patch manager does not support thrid party softewares
+  D. option B is a good solution, but patch manager does not support third party softwares
 
 - A company is developing an application that provides order shipping statistics for retrieval by a REST API. The company wants to extract the shipping statistics, organize the data into an easy-to-read HTML format, and send the report to several email addresses at the same time every morning.
   Which combination of steps should a solutions architect take to meet these requirements? (Choose two.)
@@ -1341,7 +1348,7 @@
 
   A
 
-- A company recently signed a contract with an AWS Managed Service Provider (MSP) Partner for help with an application migration initiative. A solutions architect needs ta share an Amazon Machine Image (AMI) from an existing AWS account with the MSP Partner's AWS account. The AMI is backed by Amazon Elastic Block Store (Amazon EBS) and uses an AWS Key Management Service (AWS KMS) customer managed key to encrypt EBS volume snapshots.
+- A company recently signed a contract with an AWS Managed Service Provider (MSP) Partner for help with an application migration initiative. A solutions architect needs to share an Amazon Machine Image (AMI) from an existing AWS account with the MSP Partner's AWS account. The AMI is backed by Amazon Elastic Block Store (Amazon EBS) and uses an AWS Key Management Service (AWS KMS) customer managed key to encrypt EBS volume snapshots.
   What is the MOST secure way for the solutions architect to share the AMI with the MSP Partner's AWS account?
 
   - A. Make the encrypted AMI and snapshots publicly available. Modify the key policy to allow the MSP Partner's AWS account to use the key.
@@ -1349,7 +1356,7 @@
   - C. Modify the launchPermission property of the AMI. Share the AMI with the MSP Partner's AWS account only. Modify the key policy to trust a new KMS key that is owned by the MSP Partner for encryption.
   - D. Export the AMI from the source account to an Amazon S3 bucket in the MSP Partner's AWS account, Encrypt the S3 bucket with a new KMS key that is owned by the MSP Partner. Copy and launch the AMI in the MSP Partner's AWS account.
 
-  B - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharingamis-explicit.html, Update grants launch permissions for the specified AMI to the specified AWS account. If you share an AMI that is backed by encrypted snapshots, you must allow the AWS accounts to use the KMS keys that were used to encrypt the snapshots. For more information
+  B - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharingamis-explicit.html, Update grants launch permissions for the specified AMI to the specified AWS account. If you share an AMI that is backed by encrypted snapshots, you must allow the AWS accounts to use the KMS keys that were used to encrypt the snapshots.
 
 - A solutions architect is designing the cloud architecture for a new application being deployed on AWS. The process should run in parallel while adding and removing application nodes as needed based on the number of jobs to be processed. The processor application is stateless. The solutions architect must ensure that the application is loosely coupled and the job items are durably stored.
   Which design should the solutions architect use?
@@ -1644,7 +1651,7 @@
 
   C
 
-- A company uses a popular content management system (CMS) for its corporate website. However, the required patching and maintenance are burdensome. The company is redesigning its website and wants anew solution. The website will be updated four times a year and does not need to have any dynamic content available. The solution must provide high scalability and enhanced security.
+- A company uses a popular content management system (CMS) for its corporate website. However, the required patching and maintenance are burdensome. The company is redesigning its website and wants a new solution. The website will be updated four times a year and does not need to have any dynamic content available. The solution must provide high scalability and enhanced security.
   Which combination of changes will meet these requirements with the LEAST operational overhead? (Choose two.)
 
   - A. Configure Amazon CloudFront in front of the website to use HTTPS functionality.
@@ -1756,7 +1763,7 @@
   - C. Load the data into the existing S3 bucket. Use S3 Cross-Region Replication (CRR) to replicate encrypted objects to an S3 bucket in another Region. Use server-side encryption with Amazon S3 managed encryption keys (SSE-S3). Use Amazon Athena to query the data.
   - D. Load the data into the existing S3 bucket. Use S3 Cross-Region Replication (CRR) to replicate encrypted objects to an S3 bucket in another Region. Use server-side encryption with Amazon S3 managed encryption keys (SSE-S3). Use Amazon RDS to query the data.
 
-  C
+  A
 
 - A company runs workloads on AWS. The company needs to connect to a service from an external provider. The service is hosted in the provider's VPC. According to the company’s security team, the connectivity must be private and must be restricted to the target service. The connection must be initiated only from the company’s VPC.
   Which solution will mast these requirements?

@@ -1,3 +1,23 @@
+- A company needs to implement a secure data encryption solution to meet regulatory requirements. The solution must provide security and durability in generating, storing, and controlling cryptographic data keys. Which action should be taken to provide the MOST secure solution?
+
+  - A. Use AWS Key Management Service (AWS KMS) to generate AWS KMS keys and data keys. Use AWS KMS key policies to control access to the AWS KMS keys.
+  - B. Use AWS Key Management Service (AWS KMS) to generate cryptographic keys and import the keys to AWS Certificate Manager. Use IAM policies to control access to the keys.
+  - C. Use a third-party solution from AWS Marketplace to generate the cryptographic keys and store them on encrypted instance store volumes. Use IAM policies to control access to the encryption key APIs.
+  - D. Use OpenSSL to generate the cryptographic keys and upload the keys to an Amazon S3 bucket with encryption activated. Apply AWS Key Management Service (AWS KMS) key policies to control access to the keys.
+
+  A
+
+- A large international company has a management account in AWS Organizations, and over 50 individual accounts for each country they operate in. Each of the country accounts has at least four VPCs set up for functional divisions. There is a high amount of trust across the accounts, and communication among all of the VPCs should be allowed. Each of the individual VPCs throughout the entire global organization will need to access an account and a VPC that provide shared services to all the other accounts.
+  How can the member accounts access the shared services VPC with the LEAST operational overhead?
+
+  - A. Create an Application Load Balancer, with a target of the private IP address of the shared services VPC. Add a Certification Authority Authorization (CAA) record for the ALB to Amazon Route 53. Point all requests for shared services in the VPCs routing tables to that CAA record.
+  - B. Create a peering connection between each of the VPCs and the shared services VPC.
+  - C. Create a Network Load Balancer across the AZs in the shared services VPC. Create service consumer roles in IAM, and set endpoint connection acceptance to automatically accept.
+    Create consumer endpoints in each division VPC and point to the Network Load Balancer.
+  - D. Create a VPN connection between each of the VPCs and the shared service VPC.
+
+  C - This describe how to setup privateLink, B is not right as there is a limit of 125 peering you can connect with a single VPC
+
 - A company runs a public-facing three-tier web application in a VPC across multiple Availability Zones. Amazon EC2 instances for the application tier running in private subnets need to download software patches from the internet. However, the EC2 instances cannot be directly accessible from the internet. Which actions should be taken to allow the EC2 instances to download the needed patches? (Select TWO.)
 
   - A. Configure a NAT gateway in a public subnet.

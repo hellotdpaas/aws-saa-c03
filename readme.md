@@ -1839,15 +1839,15 @@
 
   C
 
-A company recently started using Amazon Aurora as the data store for its global ecommerce application. When large reports are run, developers report that the ecommerce application is performing poorly. After reviewing metrics in Amazon CloudWatch, a solutions architect finds that the ReadIOPS and CPU utilization metrics are spiking when monthly reports run.
-What is the MOST cost-effective solution?
+- A company recently started using Amazon Aurora as the data store for its global ecommerce application. When large reports are run, developers report that the ecommerce application is performing poorly. After reviewing metrics in Amazon CloudWatch, a solutions architect finds that the ReadIOPS and CPU utilization metrics are spiking when monthly reports run.
+  What is the MOST cost-effective solution?
 
-- A. Migrate the monthly reporting to Amazon Redshift.
-- B. Migrate the monthly reporting to an Aurora Replica.
-- C. Migrate the Aurora database to a larger instance class.
-- D. Increase the Provisioned IOPS on the Aurora instance.
+  - A. Migrate the monthly reporting to Amazon Redshift.
+  - B. Migrate the monthly reporting to an Aurora Replica.
+  - C. Migrate the Aurora database to a larger instance class.
+  - D. Increase the Provisioned IOPS on the Aurora instance.
 
-B
+  B
 
 - A company hosts a website analytics application on a single Amazon EC2 On-Demand Instance. The analytics software is written in PHP and uses a MySQL database. The analytics software, the web server that provides PHP, and the database server are all hosted on the EC2 instance. The application is showing signs of performance degradation during busy times and is presenting 5xx errors. The company needs to make the application scale seamlessly.
   Which solution will meet these requirements MOST cost-effectively?
@@ -1929,7 +1929,7 @@ B
 
   - A. Configure S3 Standard-Infrequent Access (S3 Standard-IA) storage for the initial storage tier of the objects.
   - B. Move the files to S3 Intelligent-Tiering and configure it to move objects to a less expensive storage tier after 90 days.
-  - C. Configure S3 inventory to manage objects and move them to S3 Standard-Infrequent Access (S3 Standard-1IA) after 90 days.
+  - C. Configure S3 inventory to manage objects and move them to S3 Standard-Infrequent Access (S3 Standard-IA) after 90 days.
   - D. Implement an S3 Lifecycle policy that moves the objects from S3 Standard to S3 Standard-Infrequent Access (S3 Standard-IA) after 90 days.
 
   D
@@ -2109,7 +2109,7 @@ B
   - D. Use Amazon GuardDuty with AWS Shield Standard
   - E. Use AWS Shield Standard with Amazon API Gateway.
 
-BC
+  BC
 
 - A company wants to migrate its MySQL database from on premises to AWS. The company recently experienced a database outage that significantly impacted the business. To ensure this does not happen again, the company wants a reliable database solution on AWS that minimizes data loss and stores every transaction on at least two nodes.
   Which solution meets these requirements?
@@ -2164,15 +2164,14 @@ BC
   AD
 
 - A company uses Amazon S3 as its data lake. The company has a new partner that must use SFTP to upload data files. A solutions architect needs to implement a highly available SFTP solution that minimizes operational overhead.
+  Which solution will meet these requirements?
 
-Which solution will meet these requirements?
+  - A. Use AWS Transfer Family to configure an SFTP-enabled server with a publicly accessible endpoint. Choose the S3 data lake as the destination.
+  - B. Use Amazon S3 File Gateway as an SFTP server. Expose the S3 File Gateway endpoint URL to the new partner. Share the S3 File Gateway endpoint with the new partner.
+  - C. Launch an Amazon EC2 instance in a private subnet in a VPInstruct the new partner to upload files to the EC2 instance by using a VPN. Run a cron job script, on the EC2 instance to upload files to the S3 data lake.
+  - D. Launch Amazon EC2 instances in a private subnet in a VPC. Place a Network Load Balancer (NLB) in front of the EC2 instances. Create an SFTP listener port for the NLB. Share the NLB hostname with the new partner. Run a cron job script on the EC2 instances to upload files to the S3 data lake.
 
-- A. Use AWS Transfer Family to configure an SFTP-enabled server with a publicly accessible endpoint. Choose the S3 data lake as the destination.
-- B. Use Amazon S3 File Gateway as an SFTP server. Expose the S3 File Gateway endpoint URL to the new partner. Share the S3 File Gateway endpoint with the new partner.
-- C. Launch an Amazon EC2 instance in a private subnet in a VPInstruct the new partner to upload files to the EC2 instance by using a VPN. Run a cron job script, on the EC2 instance to upload files to the S3 data lake.
-- D. Launch Amazon EC2 instances in a private subnet in a VPC. Place a Network Load Balancer (NLB) in front of the EC2 instances. Create an SFTP listener port for the NLB. Share the NLB hostname with the new partner. Run a cron job script on the EC2 instances to upload files to the S3 data lake.
-
-A - AWS Transfer Family securely scales your recurring business-to-business file transfers to AWS Storage services using SFTP, FTPS, FTP, and AS2 protocols.
+  A - AWS Transfer Family securely scales your recurring business-to-business file transfers to AWS Storage services using SFTP, FTPS, FTP, and AS2 protocols.
 
 - A company needs to store contract documents. A contract lasts for 5 years. During the 5-year period, the company must ensure that the documents cannot be overwritten or deleted. The company needs to encrypt the documents at rest and rotate the encryption keys automatically every year.
   Which combination of steps should a solutions architect take to meet these requirements with the LEAST operational overhead? (Choose two.)
@@ -2213,7 +2212,7 @@ A - AWS Transfer Family securely scales your recurring business-to-business file
   - C. Move the EC2 instances into an Auto Scaling group. Configure the order system to send messages to an Amazon Simple Queue Service (Amazon SQS) queue. Configure the EC2 instances to consume messages from the queue.
   - D. Create an Amazon Simple Notification Service (Amazon SNS) topic. Create an AWS Lambda function, and subscribe the function to the SNS topic. Configure the order system to send messages to the SNS topic. Send a command to the EC2 instances to process the messages by using AWS Systems Manager Run Command.
 
-C
+  C
 
 - A company runs an application on a large fleet of Amazon EC2 instances. The application reads and writes entries into an Amazon DynamoDB table. The size of the DynamoDB table continuously grows, but the application needs only data from the last 30 days. The company needs a solution that minimizes cost and development effort.
   Which solution meets these requirements?
@@ -2237,15 +2236,14 @@ C
   BE
 
 - A telemarketing company is designing its customer call center functionality on AWS. The company needs a solution that provides multiple speaker recognition and generates transcript files. The company wants to query the transcript files to analyze the business patterns. The transcript files must be stored for 7 years for auditing purposes.
+  Which solution will meet these requirements?
 
-Which solution will meet these requirements?
+  - A. Use Amazon Rekognition for multiple speaker recognition. Store the transcript files in Amazon S3. Use machine learning models for transcript file analysis.
+  - B. Use Amazon Transcribe for multiple speaker recognition. Use Amazon Athena for transcript file analysis.
+  - C. Use Amazon Translate for multiple speaker recognition. Store the transcript files in Amazon Redshift. Use SQL queries for transcript file analysis.
+  - D. Use Amazon Rekognition for multiple speaker recognition. Store the transcript files in Amazon S3. Use Amazon Textract for transcript file analysis.
 
-- A. Use Amazon Rekognition for multiple speaker recognition. Store the transcript files in Amazon S3. Use machine learning models for transcript file analysis.
-- B. Use Amazon Transcribe for multiple speaker recognition. Use Amazon Athena for transcript file analysis.
-- C. Use Amazon Translate for multiple speaker recognition. Store the transcript files in Amazon Redshift. Use SQL queries for transcript file analysis.
-- D. Use Amazon Rekognition for multiple speaker recognition. Store the transcript files in Amazon S3. Use Amazon Textract for transcript file analysis.
-
-B
+  B
 
 - A company hosts its application on AWS. The company uses Amazon Cognito to manage users. When users log in to the application, the application fetches required data from Amazon DynamoDB by using a REST API that is hosted in Amazon API Gateway. The company wants an AWS managed solution that will control access to the REST API to reduce development efforts.
   Which solution will meet these requirements with the LEAST operational overhead?
@@ -2382,7 +2380,7 @@ B
   - D. Back up data with AWS Backup. Use the backup to create the required infrastructure in a second AWS Region. Use Amazon Route 53 to configure active-passive failover. Create an Aurora second primary instance in the second Region.
 
   A - Anything that is not instant recovery is active - passive.
-  In active -passive we have : 1. Aws Backup(least op overhead) - RTO/RPO = hours 2. Pilot Light ( Basic Infra is already deployed, but needs to be fully implemented) -RTO/RPO = 10's of minutes. 3. Warm Standby- ( Basic infra + runs small loads ( might need to add auto scaling) -RTO/RPO= minutes 4. ( ACTIVE -ACTIVE ) : Multi AZ option : instant (https://aws.amazon.com/blogs/architecture/disaster-recovery-dr-architecture-on-aws-part-i-strategies-for-recovery-in-the-cloud/)
+  In active -passive we have : 1. Aws Backup(least op overhead) - RTO/RPO = hours 2. Pilot Light ( Basic Infra is already deployed, but needs to be fully implemented) -RTO/RPO = 10's of minutes. 3. Warm Standby- ( Basic infra + runs small loads might need to add auto scaling) -RTO/RPO= minutes 4. ( ACTIVE -ACTIVE ) : Multi AZ option : instant (https://aws.amazon.com/blogs/architecture/disaster-recovery-dr-architecture-on-aws-part-i-strategies-for-recovery-in-the-cloud/)
 
 - A company has a web server running on an Amazon EC2 instance in a public subnet with an Elastic IP address. The default security group is assigned to the EC2 instance. The default network ACL has been modified to block all traffic. A solutions architect needs to make the web server accessible from everywhere on port 443.
   Which combination of steps will accomplish this task? (Choose two.)
@@ -2742,7 +2740,7 @@ B
   - C. Use an Amazon RDS Multi-AZ DB instance with a pilot light deployment.
   - D. Use an Amazon RDS Multi-AZ DB instance with a warm standby deployment.
 
-  A
+  B
 
 - A company runs an application on Amazon EC2 instances. The company needs to implement a disaster recovery (DR) solution for the application. The DR solution needs to have a recovery time objective (RTO) of less than 4 hours. The DR solution also needs to use the fewest possible AWS resources during normal operations.
 
@@ -2816,7 +2814,7 @@ B
   - C. Move the EC2 instances into the public subnet. Give the EC2 instances a set of Elastic IP addresses.
   - D. Configure the security group for the ALB to allow any TCP traffic on any port.
 
-    B
+  B
 
 - A research company runs experiments that are powered by a simulation application and a visualization application. The simulation application runs on Linux and outputs intermediate data to an NFS share every 5 minutes. The visualization application is a Windows desktop application that displays the simulation output and requires an SMB file system.
   The company maintains two synchronized file systems. This strategy is causing data duplication and inefficient resource usage. The company needs to migrate the applications to AWS without making code changes to either application.
